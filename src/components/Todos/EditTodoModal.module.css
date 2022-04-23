@@ -1,0 +1,63 @@
+.edit-todo-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+}
+
+.edit-todo-modal .modal-form {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 35%;
+  left: 35%;
+  padding: 1rem;
+  background-color: var(--bg);
+  border: none;
+  border-radius: 2px;
+  width: 30%;
+}
+
+.edit-todo-modal .modal-form h3 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+
+.edit-todo-modal .modal-form input {
+  width: 100%;
+  margin: 1rem 0 1.5rem 0;
+  background-color: white;
+  border: 1px solid rgb(229, 229, 229);
+  caret-color: var(--primary);
+  padding: 0.25rem 1rem;
+  color: rgb(153, 153, 153);
+  font-weight: 200;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0.5;
+}
+
+.edit-todo-modal .modal-form .modal-btn-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-todo-modal .modal-form button {
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    font-weight: 300;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.edit-todo-modal .modal-form .cancel-btn {
+    background-color: #3d4756;
+    color: white;
+}
+.edit-todo-modal .modal-form .save-btn {
+    background-color: #90cdf4;
+}

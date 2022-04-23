@@ -1,0 +1,13 @@
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/debug/deps/uuid-74df639ef44dad73.rmeta: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/builder.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/parser.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/fmt.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/v4.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/rng.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/external/mod.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/macros.rs
+
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/debug/deps/uuid-74df639ef44dad73.d: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/builder.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/parser.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/fmt.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/v4.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/rng.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/external/mod.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/macros.rs
+
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/lib.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/builder.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/error.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/parser.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/fmt.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/v4.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/rng.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/external/mod.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/uuid-1.0.0/src/macros.rs:

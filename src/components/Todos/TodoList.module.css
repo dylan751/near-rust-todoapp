@@ -1,0 +1,79 @@
+.todo-list {
+  /* box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2); */
+  margin: 0;
+  background-color: white;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.5px solid rgb(223, 223, 223);
+}
+
+.todo-list .todo-item {
+  padding: 0.5rem 0;
+}
+
+.todo-list li button {
+  position: relative;
+  margin: 0.25rem;
+  background-color: var(--secondary);
+  border-radius: 100%;
+  border: none;
+  color: #efefef;
+  cursor: pointer;
+  /* padding: 0.25rem 0.5rem; */
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: transform 30ms;
+}
+
+.todo-list li span {
+  word-break: break-all;
+  display: block;
+  line-height: 1.2;
+  transition: color 0.4s;
+  color: rgb(102, 102, 102);
+  font-weight: 200;
+}
+
+.todo-list span {
+  flex: 6;
+}
+
+.todo-list #toggle-btn {
+  background-color: white;
+  border: 1px solid rgb(210, 210, 210);
+  margin-right: 0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.todo-list #delete-btn {
+  background-color: var(--primary);
+}
+
+.todo-list .group-btn {
+  flex: 2;
+}
+
+.todo-list .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list .done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.done-checkmark:after {
+  content: "✔";
+  position: absolute;
+  left: 6px;
+  top: 1px;
+  text-align: center;
+  border-radius: 50%;
+  color: rgb(131, 235, 105);
+}

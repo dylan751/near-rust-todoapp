@@ -1,0 +1,11 @@
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/wasm32-unknown-unknown/debug/deps/getrandom-fe5bd65c3553f8ce.rmeta: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/dummy.rs
+
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/wasm32-unknown-unknown/debug/deps/libgetrandom-fe5bd65c3553f8ce.rlib: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/dummy.rs
+
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/wasm32-unknown-unknown/debug/deps/getrandom-fe5bd65c3553f8ce.d: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/dummy.rs
+
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/dummy.rs:

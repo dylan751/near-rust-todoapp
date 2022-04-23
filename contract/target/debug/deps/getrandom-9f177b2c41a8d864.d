@@ -1,0 +1,11 @@
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/debug/deps/getrandom-9f177b2c41a8d864.rmeta: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util_libc.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/use_file.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/macos.rs
+
+/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/debug/deps/getrandom-9f177b2c41a8d864.d: /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util_libc.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/use_file.rs /Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/macos.rs
+
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/lib.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/error_impls.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/util_libc.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/use_file.rs:
+/Users/duongnh/.cargo/registry/src/github.com-1ecc6299db9ec823/getrandom-0.1.16/src/macos.rs:

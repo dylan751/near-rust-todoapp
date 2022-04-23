@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/wasm32-unknown-unknown/debug/build/typenum-06c51cf13ce231ef/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/Users/duongnh/Documents/learnCode/blockchain/near/projects/todo-app/contract/target/wasm32-unknown-unknown/debug/build/typenum-06c51cf13ce231ef/out/op.rs

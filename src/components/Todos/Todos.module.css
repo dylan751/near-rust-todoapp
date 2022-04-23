@@ -1,0 +1,51 @@
+.todo-section h2 {
+  margin: 0;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 200;
+  background-image: linear-gradient(to left, #4fd1c5, #3182ce);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.todo-section .todo {
+  background-color: white;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 0.5rem;
+}
+
+.todo-form {
+  border-bottom: 0.5px solid rgb(223, 223, 223);
+}
+
+.todo-form #fieldset {
+  padding: 0;
+  display: flex;
+  margin: 0;
+}
+
+.todo-form #fieldset #todoTitle {
+  padding: 0.5rem;
+}
+
+.todo-form #fieldset button {
+  color: var(--secondary);
+  border: none;
+  cursor: pointer;
+  padding: 0.3em 0.75em;
+  transition: transform 30ms;
+  background-color: white;
+}
+
+.todo-form #fieldset input {
+  /* background-color: var(--shadow); */
+  background-color: white;
+  border: none;
+  caret-color: var(--primary);
+  padding: 0.25rem 1rem;
+  color: rgb(153, 153, 153);
+  font-weight: 200;
+  opacity: 0.5;
+}
