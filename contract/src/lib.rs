@@ -9,7 +9,6 @@ setup_alloc!();
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]
 pub struct TodoApp {
-    records: LookupMap<AccountId, String>,
     todos: UnorderedMap<usize, Todo>,
     owner: AccountId,
 }
@@ -17,14 +16,13 @@ pub struct TodoApp {
 impl Default for TodoApp {
     fn default() -> Self {
         Self {
-            records: LookupMap::new(b"records".to_vec()),
             todos: UnorderedMap::new(b"todos".to_vec()),
             owner: env::signer_account_id(),
         }
     }
 }
 
-#[derive(Clone, Deserialize, Serialize, BorshDeserialize, BorshSerialize)]
+#[derive(Clone, Deserialize, Serialize, BorshDeserialize, BorshSerialize, Debug)]
 #[serde(crate = "near_sdk::serde")]
 pub struct Todo {
     id: usize,
@@ -53,7 +51,8 @@ impl TodoApp {
     pub fn delete_todo(&mut self, todo_id: usize) -> usize {
         // Check if current user is the owner or not
         let account_id = env::signer_account_id();
-        assert_eq!(account_id, self.owner, "Only owner can delete todos!");
+        let todo = self.todos.get(&todo_id).unwrap();
+        assert_eq!(account_id, todo.author, "Only author can delete todos!");
 
         self.todos.remove(&todo_id);
         todo_id
@@ -65,15 +64,26 @@ impl TodoApp {
     }
 
     // Get all posts
-    pub fn get_all_todos(&self) -> Vec<Todo> {
-        self.todos.values_as_vector().to_vec()
+    pub fn get_all_todos(&self, account_id: AccountId) -> Vec<Todo> {
+        // Get all todos in the contract
+        let all_todos = self.todos.values_as_vector().to_vec();
+
+        // A vector to store all todos for the current Account
+        let mut account_todos = Vec::<Todo>::new();
+
+        // Get all todos for the current Account only
+        for todo in all_todos {
+            if todo.author == account_id {
+                account_todos.push(todo);
+            }
+        }
+        
+        account_todos
     }
 
     pub fn update_todo_state(&mut self, todo_id: usize) -> Todo {
         // Check if current user is the owner or not
         let account_id = env::signer_account_id();
-        assert_eq!(account_id, self.owner, "Only owner can update todo state!");
-
         let todo = self.todos.get(&todo_id).unwrap();
         assert_eq!(account_id, todo.author, "Only owner can update todo state!");
 
@@ -92,8 +102,6 @@ impl TodoApp {
     pub fn update_todo_title(&mut self, todo_id: usize, title: String) -> Todo {
         // Check if current user is the owner or not
         let account_id = env::signer_account_id();
-        assert_eq!(account_id, self.owner, "Only owner can update todos!");
-
         let todo = self.todos.get(&todo_id).unwrap();
         assert_eq!(account_id, todo.author, "Only owner can update todos!");
 

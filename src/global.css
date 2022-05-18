@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
 }
@@ -22,7 +26,11 @@ html {
 
 body {
   margin: 0;
-  padding: 1rem;
+  padding: 0;
+}
+
+.bg-color {
+  background: #001220;
 }
 
 main {
@@ -141,6 +149,85 @@ aside footer *:last-child {
   100% {
     transform: translateY(10em);
   }
+}
+
+.toStableTipAnimation {
+  animation: opacityAni 1s ease both;
+}
+.ant-button-hover-white:hover, .ant-button-hover-white:active, .ant-button-hover-white:focus {
+  color: white;
+}
+.radio-stake {
+  width: 100%;
+}
+.radio-stake .ant-radio-button-wrapper {
+  width: 50%;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  --tw-text-opacity: 1;
+  color: rgba(126, 138, 147, var(--tw-text-opacity));
+  height: 40px;
+  line-height: 40px;
+}
+.radio-stake .ant-radio-button-wrapper-checked {
+  --tw-bg-opacity: 1;
+  background-color: rgba(41,55,65,var(--tw-bg-opacity));
+  border-radius: 8px;
+  color: white;
+}
+
+.radio-stake .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active,
+.radio-stake .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: white;
+}
+
+.radio-stake .ant-radio-button-wrapper::before {
+  content: none;
+}
+.ant-input-number-group-wrapper.staking-input {
+  padding: 5px;
+  width: 100%;
+  --tw-bg-opacity: 0.2;
+  background-color: rgba(0,0,0,var(--tw-bg-opacity));
+}
+/* .staking-input {
+
+} */
+.staking-input .ant-input-number-group-addon {
+  border: none;
+  --tw-bg-opacity: 0.2;
+  background-color: rgba(0,0,0,var(--tw-bg-opacity));
+  height: 10px;
+}
+.staking-input .ant-input-number, .staking-input .ant-input-number-focused {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.staking-input .ant-input-number-input {
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.staking-input.ant-input-number-disabled {
+  color: white;
+  background: transparent;
+}
+.staking-tabs .ant-tabs-nav {
+  display: none;
+}
+
+.button-active {
+  background: linear-gradient(rgb(0, 198, 162) 0%, rgb(0, 139, 114) 100%);
+  border-radius: 5px;
+}
+.select-token-wrap {
+  backdrop-filter: blur(20px);
+}
+.select-token-wrap .ant-modal-content {
+  background: none;
+  box-shadow: none;
 }
 
 @media (prefers-color-scheme: dark) {

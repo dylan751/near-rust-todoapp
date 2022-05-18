@@ -1,5 +1,5 @@
 import React from "react";
-import getConfig from "../../config";
+import getConfig from "../../utils/config";
 import styles from "./Notification.module.css";
 const { networkId } = getConfig(process.env.NODE_ENV || "development");
 
