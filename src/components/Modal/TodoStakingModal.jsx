@@ -25,6 +25,7 @@ import {
   unstake,
   withdraw,
 } from '../../utils/staking-contract';
+import { createTodo } from '../../utils/todo-contract';
 import moment from 'moment';
 import { MyButton, MaxButton } from '../../components/MyButton';
 // import { IntervalSpinner } from "~components/spiner/IntervalSpinner";
@@ -122,11 +123,12 @@ function TodoStakingModal({ handleCancel, visible, formData, hide, title }) {
 
       // Stake token to pool
       console.log("Staking token");
-      await stakeToken(
+      await createTodo(
         parseTokenAmount(
           stakeValue,
           getTokenMetadata('ZNG').decimals
-        ).toLocaleString()
+        ).toLocaleString(),
+        title
       );
       hide();
     } catch (e) {
