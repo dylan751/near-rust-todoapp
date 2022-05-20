@@ -5,15 +5,36 @@ import { login, logout } from '../utils';
 import '../global.css';
 import Todos from '../components/Todos/Todos';
 import Notification from '../components/Notification/Notification';
+import TodoStakingModal from '../components/Modal/TodoStakingModal';
 
 function TodosPage() {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [todoList, setTodoList] = useState([]);
+  const [newTodoTitle, setNewTodoTitle] = useState('');
+
+  // Modal
+  const [visible, setVisible] = useState(false);
 
   // after submitting the form, we want to show Notification
   const [showNotification, setShowNotification] = useState(false);
   const [method, setMethod] = useState('');
+
+  const show = () => {
+    setVisible(true);
+    const antModalRoot = document.querySelector(".ant-modal-root");
+    antModalRoot.classList.remove("hide-modal");
+  }
+
+  const hide = () => {
+    setVisible(false);
+    const antModalRoot = document.querySelector(".ant-modal-root");
+    antModalRoot.classList.add("hide-modal");
+  }
+
+  const handleCancel = () => {
+    hide();
+  }
 
   const onClickDeleteButton = async (todoId) => {
     await window.contract.delete_todo({ todo_id: todoId });
@@ -33,12 +54,11 @@ function TodosPage() {
     const { fieldset, todoTitle } = event.target.elements;
 
     // hold onto new user-entered value from React's SynthenticEvent for use after `await` call
-    const newTodoTitle = todoTitle.value;
+    // const newTodoTitle = todoTitle.value;
+    setNewTodoTitle(todoTitle.value);
 
-    // disable the form while the value gets updated on-chain
-    fieldset.disabled = true;
-    console.log(newTodoTitle);
-    history.push('/staking-todo');
+    show();
+    // history.push('/staking-todo');
   };
   // const onClickAddButton = async (event) => {
   //   event.preventDefault();
@@ -168,14 +188,14 @@ function TodosPage() {
         onClickChangeStateButton={onClickChangeStateButton}
         onClickChangeTitleButton={onClickChangeTitleButton}
       />
-      {/* <TodoStakingModal
+      <TodoStakingModal
         show={show}
         hide={hide}
         handleCancel={handleCancel}
         visible={visible}
-        title={title}
-        formData={formData}
-      /> */}
+        title={newTodoTitle}
+        // formData={formData}
+      />
       {/* {visible && <TodoStakingModal />} */}
       {showNotification && <Notification method={method} />}
     </div>
