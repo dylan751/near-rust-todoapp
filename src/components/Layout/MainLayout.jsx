@@ -49,7 +49,7 @@ const MainLayout = (props) => {
                 alt=""
               />
               <span className={'text-2xl font-extrabold sm:hidden xs:hidden'}>
-                ZNG DEV
+                ZNG
               </span>
             </Link>
           </div>

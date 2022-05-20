@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import StakingPage from './pages/StakingPage';
 import MainLayout from './components/Layout/MainLayout';
 import TodosPage from './pages/TodosPage';
+import StakingTodoPage from './pages/StakingTodoPage';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Switch>
               <Route path="/" exact component={AutoHeight(TodosPage)} />
               <Route path="/staking" component={AutoHeight(StakingPage)} />
+              <Route path="/staking-todo" component={AutoHeight(StakingTodoPage)} />
             </Switch>
           </div>
         </MainLayout>

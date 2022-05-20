@@ -58,7 +58,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@svgr/parcel-plugin-svgr": "^5.5.0",
     "@types/big.js": "^6.1.2",
-    "antd": "^4.18.9",
+    "antd": "4.18.4",
     "axios": "^0.21.1",
     "big-integer": "^1.6.51",
     "big.js": "^6.1.1",

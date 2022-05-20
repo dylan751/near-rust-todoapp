@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { Radio, InputNumber, Tabs, notification } from "antd";
+import React, { useEffect, useState } from 'react';
+import { Radio, InputNumber, Tabs, notification } from 'antd';
 import {
   wallet,
   parseTokenAmount,
   parseTokenWithDecimals,
   formatNumber,
   login,
-} from "../utils/near";
-import ftContract from "../utils/ft-contract";
-import { getTokenMetadata } from "../utils/token";
+} from '../utils/near';
+import ftContract from '../utils/ft-contract';
+import { getTokenMetadata } from '../utils/token';
 import {
   harvest,
   stakeToken,
   stakingContract,
   unstake,
   withdraw,
-} from "../utils/staking-contract";
-import moment from "moment";
-import { MyButton, MaxButton } from "../components/MyButton";
+} from '../utils/staking-contract';
+import moment from 'moment';
+import { MyButton, MaxButton } from '../components/MyButton';
 // import { IntervalSpinner } from "~components/spiner/IntervalSpinner";
-import { CreditCardOutlined } from "@ant-design/icons";
+import { CreditCardOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 
-function StakingPage() {
+function StakingTodoPage() {
   const [balance, setBalance] = useState(0);
-  const [tabValue, setTabValue] = useState("stake");
+  const [tabValue, setTabValue] = useState('stake');
   const [stakeValue, setStakeValue] = useState(0);
   const [unstakeValue, setUnstakeValue] = useState(0);
   const [stakingAccount, setStakingAccount] = useState({
-    accountId: "",
+    accountId: '',
     canWithdraw: true,
     reward: 0,
     stakeBalance: 0,
@@ -49,12 +49,12 @@ function StakingPage() {
   });
 
   const options = [
-    { label: "Stake", value: "stake" },
-    { label: "Unstake", value: "unstake" },
+    { label: 'Stake', value: 'stake' },
+    { label: 'Unstake', value: 'unstake' },
   ];
 
   const getBalance = async () => {
-    let balance = "0";
+    let balance = '0';
     if (wallet.isSignedIn()) {
       //@ts-ignore
       balance = await ftContract.ft_balance_of({
@@ -101,19 +101,22 @@ function StakingPage() {
     );
   };
 
-  const handleStakeToken = async () => {
+  const handleStakeToken = async (event: any) => {
     if (!wallet.isSignedIn()) await login();
     if (!stakeValue || stakeValue <= 0 || stakeValue > balance) return;
     setStakeLoading(true);
     try {
+      // Stake token to pool
       await stakeToken(
         parseTokenAmount(
           stakeValue,
-          getTokenMetadata("ZNG").decimals
+          getTokenMetadata('ZNG').decimals
         ).toLocaleString()
       );
+
+      // Create new todo
     } catch (e) {
-      console.log("Error", e);
+      console.log('Error', e);
     } finally {
       setStakeLoading(false);
     }
@@ -127,7 +130,7 @@ function StakingPage() {
       unstakeValue >
         parseTokenWithDecimals(
           stakingAccount.stakeBalance,
-          getTokenMetadata("ZNG").decimals
+          getTokenMetadata('ZNG').decimals
         )
     )
       return;
@@ -136,11 +139,11 @@ function StakingPage() {
       await unstake(
         parseTokenAmount(
           unstakeValue,
-          getTokenMetadata("ZNG").decimals
+          getTokenMetadata('ZNG').decimals
         ).toLocaleString()
       );
     } catch (e) {
-      console.log("Error", e);
+      console.log('Error', e);
     } finally {
       setUnstakeLoading(false);
     }
@@ -151,7 +154,7 @@ function StakingPage() {
     if (
       parseTokenWithDecimals(
         stakingAccount.reward,
-        getTokenMetadata("ZNG").decimals
+        getTokenMetadata('ZNG').decimals
       ) < 1
     )
       return;
@@ -159,7 +162,7 @@ function StakingPage() {
     try {
       await harvest();
     } catch (e) {
-      console.log("Error", e);
+      console.log('Error', e);
     } finally {
       setClaimLoading(false);
     }
@@ -173,7 +176,7 @@ function StakingPage() {
     try {
       await withdraw();
     } catch (e) {
-      console.log("Error", e);
+      console.log('Error', e);
     } finally {
       setWithdrawLoading(false);
     }
@@ -187,71 +190,16 @@ function StakingPage() {
     <div className="staking w-full">
       <section className="w-full md:w-560px lg:w-560px xl:w-560px m-auto relative xs:px-2">
         <div className="flex flex-row justify-between items-center">
-          <h1 className={"text-white text-3xl"}>You should stake at least 1 ZNG to commit to the Task</h1>
+          <h1 className={'text-white text-3xl'}>
+            You should stake at least 1 ZNG to commit to the Task
+          </h1>
           {/* <IntervalSpinner onProgressSuccess={refreshData} /> */}
         </div>
-        <div className={"flex flex-col mt-5 justify-between"}>
-          <div
-            className={
-              "flex flex-row justify-between mb-2 bg-cardBg rounded-2xl p-5 w-full"
-            }
-          >
-            <p className={"text-base text-primaryText"}>Staking APR</p>
-            <p className={"text-2xl text-white"}>18%</p>
-          </div>
-          <div
-            className={
-              "flex flex-col justify-between mb-2 bg-cardBg rounded-2xl p-5 w-full"
-            }
-          >
-            <p className={"text-base text-primary mb-4"}>
-              {wallet.getAccountId()}
-            </p>
-            <div className="flex flex-row justify-between">
-              <span className="text-sm text-primaryText">Total staked</span>
-              <span className="text-sm text-white font-bold">
-                {formatNumber(
-                  parseTokenWithDecimals(
-                    stakingAccount.stakeBalance,
-                    getTokenMetadata("ZNG").decimals
-                  )
-                )}{" "}
-                ZNG
-              </span>
-            </div>
-            <div className="flex flex-row justify-between mb-3">
-              <span className="text-sm text-primaryText">Pending Reward</span>
-              <span className="text-sm text-white font-bold">
-                {formatNumber(
-                  parseTokenWithDecimals(
-                    stakingAccount.reward,
-                    getTokenMetadata("ZNG").decimals
-                  )
-                )}{" "}
-                ZNG
-              </span>
-            </div>
-            <p className="text-xs text-primaryText mb-1">
-              <span>
-                You can claim reward when reward balance greater than 1 ZNG
-              </span>
-            </p>
-            <MyButton
-              onClick={handleClaimReward}
-              loading={claimLoading}
-              disable={
-                parseTokenWithDecimals(
-                  stakingAccount.reward,
-                  getTokenMetadata("ZNG").decimals
-                ) < 1
-              }
-              text="Claim Reward"
-            />
-          </div>
-          <div className={"bg-cardBg rounded-2xl p-5 mb-2"}>
-            <div className={"bg-black bg-opacity-20 rounded-xl p-1"}>
+        <div className={'flex flex-col mt-5 justify-between'}>
+          <div className={'bg-cardBg rounded-2xl p-5 mb-2'}>
+            <div className={'bg-black bg-opacity-20 rounded-xl p-1'}>
               <Radio.Group
-                className={"radio-stake"}
+                className={'radio-stake'}
                 options={options}
                 onChange={(e) => {
                   setTabValue(e.target.value);
@@ -263,7 +211,7 @@ function StakingPage() {
 
             <Tabs activeKey={tabValue} className="staking-tabs">
               <TabPane key="stake">
-                <div className={"input-form mt-5"}>
+                <div className={'input-form mt-5'}>
                   <p className="flex flex-row items-center text-primaryText mb-2">
                     <CreditCardOutlined />
                     <span className="text-primaryText mr-2 ml-1">Balance:</span>
@@ -271,20 +219,21 @@ function StakingPage() {
                     <img
                       className="mr-1 ml-2"
                       style={{ width: 15, height: 15 }}
-                      src={getTokenMetadata("ZNG").icon}
+                      src={getTokenMetadata('ZNG').icon}
                       alt=""
                     />
                     <span className="text-primary">ZNG</span>
                   </p>
                   <InputNumber
                     min={0}
-                    className={"staking-input font-bold mb-4 rounded"}
+                    className={'staking-input font-bold rounded'}
                     addonAfter={
                       <MaxButton onClick={() => setStakeValue(balance)} />
                     }
                     value={stakeValue}
                     onChange={(value) => setStakeValue(value)}
                     defaultValue={0}
+                    controls={false}
                   />
 
                   <p className="text-xs text-primaryText mb-1">
@@ -299,12 +248,12 @@ function StakingPage() {
                     disable={
                       !stakeValue || stakeValue <= 0 || stakeValue > balance
                     }
-                    text="Stake"
+                    text="Confirm"
                   />
                 </div>
               </TabPane>
               <TabPane key="unstake">
-                <div className={"input-form mt-5"}>
+                <div className={'input-form mt-5'}>
                   <p className="flex flex-row items-center text-primaryText mb-2">
                     <CreditCardOutlined />
                     <span className="text-primaryText mr-2 ml-1">
@@ -313,27 +262,27 @@ function StakingPage() {
                     {formatNumber(
                       parseTokenWithDecimals(
                         stakingAccount.stakeBalance,
-                        getTokenMetadata("ZNG").decimals
+                        getTokenMetadata('ZNG').decimals
                       )
                     )}
                     <img
                       className="mr-1 ml-2"
                       style={{ width: 15, height: 15 }}
-                      src={getTokenMetadata("ZNG").icon}
+                      src={getTokenMetadata('ZNG').icon}
                       alt=""
                     />
                     <span className="text-primary">ZNG</span>
                   </p>
                   <InputNumber
                     min={0}
-                    className={"staking-input font-bold mb-4 rounded"}
+                    className={'staking-input font-bold rounded'}
                     addonAfter={
                       <MaxButton
                         onClick={() =>
                           setUnstakeValue(
                             parseTokenWithDecimals(
                               stakingAccount.stakeBalance,
-                              getTokenMetadata("ZNG").decimals
+                              getTokenMetadata('ZNG').decimals
                             )
                           )
                         }
@@ -342,6 +291,7 @@ function StakingPage() {
                     value={unstakeValue}
                     onChange={(value) => setUnstakeValue(value)}
                     defaultValue={0}
+                    controls={false}
                   />
 
                   <p className="text-xs text-primaryText mb-1">
@@ -357,7 +307,7 @@ function StakingPage() {
                       unstakeValue >
                         parseTokenWithDecimals(
                           stakingAccount.stakeBalance,
-                          getTokenMetadata("ZNG").decimals
+                          getTokenMetadata('ZNG').decimals
                         )
                     }
                     text="Unstake"
@@ -370,19 +320,18 @@ function StakingPage() {
           {stakingAccount.unstakeBalance > 0 && (
             <div
               className={
-                "flex flex-col justify-between bg-cardBg rounded-2xl p-5 w-full"
+                'flex flex-col justify-between bg-cardBg rounded-2xl p-5 w-full'
               }
             >
-              <p className={"text-base text-primaryText mb-4"}>Withdraw</p>
+              <p className={'text-base text-primaryText mb-4'}>Withdraw</p>
               <div className="flex flex-row justify-between mb-0.5">
-                <span className="text-sm text-primaryText">Unstaked</span>
                 <span className="text-sm text-white font-bold">
                   {formatNumber(
                     parseTokenWithDecimals(
                       stakingAccount.unstakeBalance,
-                      getTokenMetadata("ZNG").decimals
+                      getTokenMetadata('ZNG').decimals
                     )
-                  )}{" "}
+                  )}{' '}
                   ZNG
                 </span>
               </div>
@@ -391,7 +340,7 @@ function StakingPage() {
                 <span className="text-sm text-white font-bold">
                   {moment(
                     Math.floor(stakingAccount.startUnstakeTimestamp / 1000000)
-                  ).format("YYYY-MM-DD HH:mm")}
+                  ).format('YYYY-MM-DD HH:mm')}
                 </span>
               </div>
               <div className="flex flex-row justify-between mb-3">
@@ -402,18 +351,18 @@ function StakingPage() {
                   {moment(
                     Math.floor(stakingAccount.startUnstakeTimestamp / 1000000)
                   )
-                    .add(43200, "s")
-                    .format("YYYY-MM-DD HH:mm")}
+                    .add(43200, 's')
+                    .format('YYYY-MM-DD HH:mm')}
                 </span>
               </div>
               <p className="text-xs text-primaryText mb-1">
                 {stakingAccount.canWithdraw
-                  ? "You can withdraw unstaked token now."
+                  ? 'You can withdraw unstaked token now.'
                   : `You can withdraw unstaked token at ${moment(
                       Math.floor(stakingAccount.startUnstakeTimestamp / 1000000)
                     )
-                      .add(43200, "s")
-                      .format("YYYY-MM-DD HH:mm")}. Please wait more time!`}
+                      .add(43200, 's')
+                      .format('YYYY-MM-DD HH:mm')}. Please wait more time!`}
               </p>
               <MyButton
                 onClick={handleWithdraw}
@@ -433,7 +382,7 @@ function StakingPage() {
               </div>
               <div className="lg:flex lg:justify-center lg:items-center">
                 <label className="text-base font-medium text-xREFColor">
-                  {poolInfo.isPaused ? "Paused" : "Active"}
+                  {poolInfo.isPaused ? 'Paused' : 'Active'}
                 </label>
               </div>
             </div>
@@ -459,7 +408,7 @@ function StakingPage() {
                   {formatNumber(
                     parseTokenWithDecimals(
                       poolInfo.totalStakeBalance,
-                      getTokenMetadata("ZNG").decimals
+                      getTokenMetadata('ZNG').decimals
                     )
                   )}
                 </label>
@@ -475,7 +424,7 @@ function StakingPage() {
                   {formatNumber(
                     parseTokenWithDecimals(
                       poolInfo.totalReward,
-                      getTokenMetadata("ZNG").decimals
+                      getTokenMetadata('ZNG').decimals
                     )
                   )}
                 </label>
@@ -489,4 +438,4 @@ function StakingPage() {
   );
 }
 
-export default StakingPage;
+export default StakingTodoPage;

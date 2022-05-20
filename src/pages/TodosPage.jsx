@@ -1,11 +1,13 @@
 import 'regenerator-runtime/runtime';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { login, logout } from '../utils';
 import '../global.css';
 import Todos from '../components/Todos/Todos';
 import Notification from '../components/Notification/Notification';
 
 function TodosPage() {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [todoList, setTodoList] = useState([]);
 
@@ -25,9 +27,8 @@ function TodosPage() {
     setIsLoading(true);
   };
 
-  const onClickAddButton = async (event) => {
+  const onClickAddButton = (event) => {
     event.preventDefault();
-
     // get elements from the form using their id attribute
     const { fieldset, todoTitle } = event.target.elements;
 
@@ -36,39 +37,53 @@ function TodosPage() {
 
     // disable the form while the value gets updated on-chain
     fieldset.disabled = true;
-
-    try {
-      // make an update call to the smart contract
-      await window.contract.create_todo({
-        // pass the value that the user entered in the greeting field
-        title: newTodoTitle,
-      });
-    } catch (e) {
-      alert(
-        'Something went wrong! ' +
-          'Maybe you need to sign out and back in? ' +
-          'Check your browser console for more info.'
-      );
-      throw e;
-    } finally {
-      // re-enable the form, whether the call succeeded or failed
-      fieldset.disabled = false;
-    }
-
-    // show Notification
-    setMethod('create_todo');
-    setShowNotification(true);
-
-    todoTitle.value = ''; // Reset input field
-
-    // remove Notification again after css animation completes
-    // this allows it to be shown again next time the form is submitted
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 11000);
-
-    setIsLoading(true);
+    console.log(newTodoTitle);
+    history.push('/staking-todo');
   };
+  // const onClickAddButton = async (event) => {
+  //   event.preventDefault();
+
+  //   // get elements from the form using their id attribute
+  //   const { fieldset, todoTitle } = event.target.elements;
+
+  //   // hold onto new user-entered value from React's SynthenticEvent for use after `await` call
+  //   const newTodoTitle = todoTitle.value;
+
+  //   // disable the form while the value gets updated on-chain
+  //   fieldset.disabled = true;
+
+  //   try {
+  //     // make an update call to the smart contract
+  //     await window.contract.create_todo({
+  //       // pass the value that the user entered in the greeting field
+  //       title: newTodoTitle,
+  //     });
+  //   } catch (e) {
+  //     alert(
+  //       'Something went wrong! ' +
+  //         'Maybe you need to sign out and back in? ' +
+  //         'Check your browser console for more info.'
+  //     );
+  //     throw e;
+  //   } finally {
+  //     // re-enable the form, whether the call succeeded or failed
+  //     fieldset.disabled = false;
+  //   }
+
+  //   // show Notification
+  //   setMethod('create_todo');
+  //   setShowNotification(true);
+
+  //   todoTitle.value = ''; // Reset input field
+
+  //   // remove Notification again after css animation completes
+  //   // this allows it to be shown again next time the form is submitted
+  //   setTimeout(() => {
+  //     setShowNotification(false);
+  //   }, 11000);
+
+  //   setIsLoading(true);
+  // };
 
   const onClickChangeStateButton = async (todoId) => {
     await window.contract.update_todo_state({ todo_id: todoId });
@@ -138,23 +153,30 @@ function TodosPage() {
       <button className="link" style={{ float: 'right' }} onClick={logout}>
         Sign out
       </button>
-      <main>
-        <h1>
-          <label className="account-id" htmlFor="greeting">
-            {
-              ' ' /* React trims whitespace around tags; insert literal space character when needed */
-            }
-            {window.accountId}!
-          </label>
-        </h1>
-        <Todos
-          todoList={todoList}
-          onClickDeleteButton={onClickDeleteButton}
-          onClickAddButton={onClickAddButton}
-          onClickChangeStateButton={onClickChangeStateButton}
-          onClickChangeTitleButton={onClickChangeTitleButton}
-        />
-      </main>
+      <h1>
+        <label className="account-id" htmlFor="greeting">
+          {
+            ' ' /* React trims whitespace around tags; insert literal space character when needed */
+          }
+          {window.accountId}!
+        </label>
+      </h1>
+      <Todos
+        todoList={todoList}
+        onClickDeleteButton={onClickDeleteButton}
+        onClickAddButton={onClickAddButton}
+        onClickChangeStateButton={onClickChangeStateButton}
+        onClickChangeTitleButton={onClickChangeTitleButton}
+      />
+      {/* <TodoStakingModal
+        show={show}
+        hide={hide}
+        handleCancel={handleCancel}
+        visible={visible}
+        title={title}
+        formData={formData}
+      /> */}
+      {/* {visible && <TodoStakingModal />} */}
       {showNotification && <Notification method={method} />}
     </div>
   );
