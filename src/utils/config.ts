@@ -29,7 +29,7 @@ function getConfig(env: string) {
         explorerUrl: "https://explorer.testnet.near.org",
         ZNG_STAKING_CONTRACT: "staking.duongnh.testnet",
         ZNG_FT_CONTRACT: "ft.duongnh.testnet",
-        ZNG_TODO_CONTRACT: "dev-1653017035729-39468833261878",
+        ZNG_TODO_CONTRACT: "dev-1653538741665-29641621805508",
         ZNG_FAUCET_FT_CONTRACT: "faucet-vbic.vbidev.testnet",
         ZNG_SIMPLE_POOL_CONTRACT: "simple-pool.vbidev.testnet",
         WRAP_NEAR_CONTRACT: "wrap.testnet",

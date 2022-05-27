@@ -16,7 +16,7 @@ const Todos = ({
   const [greeting, setGreeting] = useState();
 
   return (
-    <div className="todo-section">
+    <div className="todo-section bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       <h2>Todo List</h2>
       <div className="todo">
         <form onSubmit={onClickAddButton} className="todo-form">

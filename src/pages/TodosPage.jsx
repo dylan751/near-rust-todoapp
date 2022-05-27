@@ -12,9 +12,11 @@ function TodosPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [todoList, setTodoList] = useState([]);
   const [newTodoTitle, setNewTodoTitle] = useState('');
+  const [todoId, setTodoId] = useState(0);
 
   // Modal
   const [visible, setVisible] = useState(false);
+  const [tabValue, setTabValue] = useState('stake');
 
   // after submitting the form, we want to show Notification
   const [showNotification, setShowNotification] = useState(false);
@@ -22,19 +24,19 @@ function TodosPage() {
 
   const show = () => {
     setVisible(true);
-    const antModalRoot = document.querySelector(".ant-modal-root");
-    antModalRoot.classList.remove("hide-modal");
-  }
+    const antModalRoot = document.querySelector('.ant-modal-root');
+    antModalRoot.classList.remove('hide-modal');
+  };
 
   const hide = () => {
     setVisible(false);
-    const antModalRoot = document.querySelector(".ant-modal-root");
-    antModalRoot.classList.add("hide-modal");
-  }
+    const antModalRoot = document.querySelector('.ant-modal-root');
+    antModalRoot.classList.add('hide-modal');
+  };
 
   const handleCancel = () => {
     hide();
-  }
+  };
 
   const onClickDeleteButton = async (todoId) => {
     await window.contract.delete_todo({ todo_id: todoId });
@@ -50,6 +52,7 @@ function TodosPage() {
 
   const onClickAddButton = (event) => {
     event.preventDefault();
+    setTabValue('stake');
     // get elements from the form using their id attribute
     const { fieldset, todoTitle } = event.target.elements;
 
@@ -106,13 +109,16 @@ function TodosPage() {
   // };
 
   const onClickChangeStateButton = async (todoId) => {
-    await window.contract.update_todo_state({ todo_id: todoId });
+    setTabValue('unstake');
+    setTodoId(todoId);
+    show();
+    // await window.contract.update_todo_state({ todo_id: todoId });
 
-    setMethod('update_todo_state');
-    setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 11000);
+    // setMethod('update_todo_state');
+    // setShowNotification(true);
+    // setTimeout(() => {
+    //   setShowNotification(false);
+    // }, 11000);
 
     setIsLoading(true);
   };
@@ -157,12 +163,9 @@ function TodosPage() {
     return (
       <main className="welcome">
         <h1>Welcome!</h1>
-        <p className="description">
-          To make use of this Todo App, you need to sign in. The button below
-          will sign you in using NEAR Wallet.
-        </p>
-        <p style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <button onClick={login}>Sign in</button>
+        <p className="description mt-40 text-2xl text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-12 text-center max-w-md m-auto">
+          To make use of this Todo App, you need to sign in. The button on the
+          right hand side will sign you in using NEAR Wallet.
         </p>
       </main>
     );
@@ -170,14 +173,8 @@ function TodosPage() {
 
   return (
     <div className={'app'}>
-      <button className="link" style={{ float: 'right' }} onClick={logout}>
-        Sign out
-      </button>
-      <h1>
+      <h1 className="text-white text-xl bg-clip-text text-center">
         <label className="account-id" htmlFor="greeting">
-          {
-            ' ' /* React trims whitespace around tags; insert literal space character when needed */
-          }
           {window.accountId}!
         </label>
       </h1>
@@ -194,6 +191,9 @@ function TodosPage() {
         handleCancel={handleCancel}
         visible={visible}
         title={newTodoTitle}
+        tabValue={tabValue}
+        setTabValue={setTabValue}
+        todoId={todoId}
         // formData={formData}
       />
       {/* {visible && <TodoStakingModal />} */}

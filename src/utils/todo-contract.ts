@@ -89,13 +89,41 @@ const createTodo = async (amount: string, title: string) => {
 
   transactions.unshift(createTodo);
 
-  console.log('Still fine');
   await executeMultipleTransactions(transactions);
 };
 
-const unstake = async (amount: string) => {
+const changeTodoState = async (amount: string, todo_id: number) => {
   //@ts-ignore
-  await stakingContract.unstake({ amount }, 30000000000000, 1);
+  // await stakingContract.unstake({ amount }, 30000000000000, 1);
+
+  let unstakingContract: Transaction = {
+    receiverId: config.ZNG_STAKING_CONTRACT,
+    functionCalls: [
+      {
+        methodName: 'unstake',
+        args: { amount },
+        gas: '30000000000000',
+        amount: '0.000000000000000000000001', // Deposit exactly 1 yoctoNEAR
+      },
+    ],
+  };
+
+  let transactions: Transaction[] = [unstakingContract];
+  
+  // Change todo state
+  let changeTodoState: Transaction = {
+    receiverId: config.ZNG_TODO_CONTRACT,
+    functionCalls: [
+      {
+        methodName: 'update_todo_state',
+        args: { todo_id: todo_id },
+      },
+    ],
+  };
+
+  transactions.unshift(changeTodoState); 
+
+  await executeMultipleTransactions(transactions);
 };
 
 const harvest = async () => {
@@ -108,4 +136,4 @@ const withdraw = async () => {
   await stakingContract.withdraw({}, 60000000000000, 1);
 };
 
-export { todoContract, createTodo, unstake, harvest, withdraw };
+export { todoContract, createTodo, changeTodoState, harvest, withdraw };

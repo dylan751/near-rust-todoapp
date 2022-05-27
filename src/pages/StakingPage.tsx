@@ -248,7 +248,7 @@ function StakingPage() {
               text="Claim Reward"
             />
           </div>
-          <div className={"bg-cardBg rounded-2xl p-5 mb-2"}>
+          {/* <div className={"bg-cardBg rounded-2xl p-5 mb-2"}>
             <div className={"bg-black bg-opacity-20 rounded-xl p-1"}>
               <Radio.Group
                 className={"radio-stake"}
@@ -365,7 +365,7 @@ function StakingPage() {
                 </div>
               </TabPane>
             </Tabs>
-          </div>
+          </div> */}
 
           {stakingAccount.unstakeBalance > 0 && (
             <div

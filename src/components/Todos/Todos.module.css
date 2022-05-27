@@ -1,13 +1,18 @@
+.todo-section {
+  margin: 1rem 0;
+}
+
 .todo-section h2 {
   margin: 0;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 200;
-  background-image: linear-gradient(to left, #4fd1c5, #3182ce);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: white;
+  /* background-image: linear-gradient(to left, #4fd1c5, #3182ce); */
+  /* background-clip: text; */
+  /* -webkit-background-clip: text; */
+  /* color: transparent; */
 }
 
 .todo-section .todo {

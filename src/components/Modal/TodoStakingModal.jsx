@@ -25,7 +25,7 @@ import {
   unstake,
   withdraw,
 } from '../../utils/staking-contract';
-import { createTodo } from '../../utils/todo-contract';
+import { createTodo, changeTodoState } from '../../utils/todo-contract';
 import moment from 'moment';
 import { MyButton, MaxButton } from '../../components/MyButton';
 // import { IntervalSpinner } from "~components/spiner/IntervalSpinner";
@@ -33,13 +33,11 @@ import { CreditCardOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 
-function TodoStakingModal({ handleCancel, visible, formData, hide, title }) {
+function TodoStakingModal({ handleCancel, visible, formData, hide, title, tabValue, setTabValue, todoId }) {
   const [form] = Form.useForm();
 
-  console.log('Visible:', visible);
-  console.log('Title:', title);
   const [balance, setBalance] = useState(0);
-  const [tabValue, setTabValue] = useState('stake');
+  // const [tabValue, setTabValue] = useState('stake');
   const [stakeValue, setStakeValue] = useState(0);
   const [unstakeValue, setUnstakeValue] = useState(0);
   const [stakingAccount, setStakingAccount] = useState({
@@ -122,7 +120,6 @@ function TodoStakingModal({ handleCancel, visible, formData, hide, title }) {
     try {
 
       // Stake token to pool
-      console.log("Staking token");
       await createTodo(
         parseTokenAmount(
           stakeValue,
@@ -152,11 +149,12 @@ function TodoStakingModal({ handleCancel, visible, formData, hide, title }) {
       return;
     setUnstakeLoading(true);
     try {
-      await unstake(
+      await changeTodoState(
         parseTokenAmount(
           unstakeValue,
           getTokenMetadata('ZNG').decimals
-        ).toLocaleString()
+        ).toLocaleString(),
+        todoId
       );
     } catch (e) {
       console.log('Error', e);
@@ -354,7 +352,7 @@ function TodoStakingModal({ handleCancel, visible, formData, hide, title }) {
               </Tabs>
             </div>
 
-            {stakingAccount.unstakeBalance > 0 && (
+            {/* {stakingAccount.unstakeBalance > 0 && (
               <div
                 className={
                   'flex flex-col justify-between bg-cardBg rounded-2xl p-5 w-full'
@@ -413,7 +411,7 @@ function TodoStakingModal({ handleCancel, visible, formData, hide, title }) {
                   text="Withdraw"
                 />
               </div>
-            )}
+            )} */}
             <div className="w-full grid mt-3 grid-cols-2 lg:grid-rows-2 gap-2">
               <div className="lg:h-16 xs:h-20 md:h-20 rounded-lg bg-darkGradientBg shadow-dark p-2.5 hover:bg-darkGradientHoverBg">
                 <div className="text-primaryText text-xs mb-1 xs:h-8 md:h-8 lg:text-center">
