@@ -189,7 +189,7 @@ input[type='radio'] {
 
 .app {
   max-width: 25rem;
-  margin: 0 auto;
+  margin: 10rem auto;
 }
 
 .status-bar {
@@ -800,8 +800,8 @@ input[type='range']::-webkit-slider-thumb {
   position: relative;
 }
 .ant-modal.todo-staking-modal {
-  width: 70% !important;
-  margin: 0 auto;
+  width: 50% !important;
+  margin: 8rem auto;
   padding: 2rem 0;
 }
 /* .ant-modal.todo-staking-modal.hide-modal {
