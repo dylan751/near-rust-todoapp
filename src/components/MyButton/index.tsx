@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import React, { useState } from 'react';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const MyButton = (props: {
   loading: boolean;
@@ -12,24 +12,24 @@ const MyButton = (props: {
   const disable = props.loading || props.disable;
 
   const style = disable
-    ? "rounded w-full h-11 text-center text-base text-white focus:outline-none font-semibold opacity-40  bg-gradient-to-b from-gradientFrom to-gradientTo hover:from-gradientFromHover to:from-gradientToHover cursor-not-allowed"
-    : "rounded w-full h-11 text-center text-base text-white focus:outline-none font-semibold button-active hover:from-gradientFromHover to:from-gradientToHover cursor-pointer";
+    ? 'rounded w-full h-11 text-center text-base text-white focus:outline-none font-semibold opacity-40  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-400 to:from-purple-400 cursor-not-allowed'
+    : 'rounded w-full h-11 text-center text-base text-white focus:outline-none font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-400 to:from-purple-400 cursor-pointer';
   return (
     <div className={style} onClick={(event) => props.onClick()}>
       <button
         className={
           disable
-            ? "w-full h-full cursor-not-allowed"
-            : "w-full h-full cursor-pointer"
+            ? 'w-full h-full cursor-not-allowed'
+            : 'w-full h-full cursor-pointer'
         }
       >
         {buttonText}
         {props.loading && (
           <Spin
-            className={"ml-2"}
+            className={'ml-2'}
             indicator={
               <LoadingOutlined
-                className={"text-white"}
+                className={'text-white'}
                 style={{ fontSize: 24 }}
                 spin
               />
@@ -47,7 +47,7 @@ const MaxButton = (props: any) => {
       onClick={() => {
         props.onClick(props.value);
       }}
-      className={"text-xs cursor-pointer"}
+      className={'text-xs cursor-pointer'}
     >
       MAX
     </span>

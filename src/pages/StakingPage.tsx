@@ -204,9 +204,6 @@ function StakingPage() {
               "flex flex-col justify-between mb-2 bg-cardBg rounded-2xl p-5 w-full"
             }
           >
-            <p className={"text-base text-primary mb-4"}>
-              {wallet.getAccountId()}
-            </p>
             <div className="flex flex-row justify-between">
               <span className="text-sm text-primaryText">Total staked</span>
               <span className="text-sm text-white font-bold">
